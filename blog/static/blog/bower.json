@@ -1,8 +1,9 @@
 {
-    "name": "blog",
-    "dependencies": {
-        "ember": "~1.6.0-beta.5",
-        "ember-data": "~1.0.0-beta.8"
-    },
-    "private": true
+  "name": "blog",
+  "dependencies": {
+    "ember": "~1.6.0-beta.5",
+    "ember-data": "~1.0.0-beta.8",
+    "jquery-cookie": "~1.4.1"
+  },
+  "private": true
 }

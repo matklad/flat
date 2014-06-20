@@ -1,3 +1,11 @@
+csrftoken = $.cookie('csrftoken')
+console.log(csrftoken)
+
+$.ajaxSetup
+  headers:
+    'X-CSRFToken': csrftoken
+
+
 window.App = Em.Application.create()
 
 App.Router.map ->
@@ -27,3 +35,10 @@ App.PostsRoute = Em.Route.extend
   model: ->
     @store.find 'post'
 
+  actions:
+    createPost: ->
+      post = @store.createRecord 'post',
+        title: 'new post'
+        text: 'I <3 django'
+
+      post.save()

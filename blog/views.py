@@ -23,7 +23,7 @@ class CommentViewSet(restframework_flat.FlatViewSetMixin,
                      viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
-    paginate_by = 1
+    paginate_by = 3
     sideload_relations = [
         ('post', PostSerializer)
     ]
