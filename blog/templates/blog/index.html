@@ -1,0 +1,22 @@
+{% load compress %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>The Blog</title>
+</head>
+<body>
+<script src="{% static 'blog/bower_components/jquery/dist/jquery.js' %}"></script>
+<script src="{% static 'blog/bower_components/handlebars/handlebars.js' %}"></script>
+<script src="{% static 'blog/bower_components/ember/ember.js' %}"></script>
+<script src="{% static 'blog/bower_components/ember-data/ember-data.js' %}"></script>
+{% compress js %}
+    <script src="{% static 'blog/app.coffee' %}" type="text/coffeescript" charset="utf-8"></script>
+    <script src="{% static 'blog/templates/posts.hbs' %}" type="text/x-handlebars"></script>
+{% endcompress %}
+
+
+</body>
+</html>

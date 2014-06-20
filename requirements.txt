@@ -1,0 +1,7 @@
+Django==1.7b4
+django-appconf==0.6
+django-compressor==1.4
+djangorestframework==2.3.14
+futures==2.1.6
+inflection==0.2.0
+six==1.7.2
