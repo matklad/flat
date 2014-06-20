@@ -9,9 +9,13 @@ class FlatSerializerMixin(object):
     @property
     def type_name(self):
         try:
-            return inflection.pluralize(self.opts.model.__name__.lower())
+            return self.opts.model.__name__.lower()
         except AttributeError:
             raise NotImplementedError
+
+    @property
+    def type_name_plural(self):
+        return inflection.pluralize(self.type_name)
 
 
 class SerializerDataDecorator(object):
@@ -41,9 +45,13 @@ class SideloadDecorator(SerializerDataDecorator):
         sideload = collections.OrderedDict()
 
         if self._top_level:
-            payload[self.type_name] = old_data
+            if self.object is None:
+                return {
+                    self.type_name: old_data
+                }
+            payload[self.type_name_plural] = old_data
         else:
-            sideload[self.type_name] = sorted(old_data, key=sideload_sort_key)
+            sideload[self.type_name_plural] = sorted(old_data, key=sideload_sort_key)
 
         objects = self.object
         if not self.many:
@@ -102,6 +110,8 @@ def merge_sideloads(left, right):
 
 class PaginationDecorator(SerializerDataDecorator):
     def decorate_data(self, old_data):
+        if self.object is None:
+            return old_data
         meta = {
             'page': 1,
             'has_next': False,
